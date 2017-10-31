@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as firebase from 'firebase';
 
-// Initialize Firebase
+import Login from './Login';
+
 const firebaseConfig = {
   apiKey: "AIzaSyBqQ-AacCfhOHlhnqCeruyf3rvFYpACo3A",
   authDomain: "bike-to-work-app.firebaseapp.com",
@@ -12,33 +13,14 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+
+
 export default class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  async logIn() {
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1586495258073984', {
-      permissions: ['public_profile'],
-    });
-    if (type === 'success') {
-      // Get the user's name using Facebook's Graph API
-      const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${token}`);
-      Alert.alert(
-        'Logged in!',
-        `Hi ${(await response.json()).name}!`,
-      );
-    }
-  }
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={this.logIn}>
-          <Text>Login with FB</Text>
-        </TouchableOpacity>
+        <Login />
       </View>
     );
   }
@@ -49,6 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 });
