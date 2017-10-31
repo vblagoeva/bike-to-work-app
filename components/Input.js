@@ -12,6 +12,7 @@ const Input = ({ label, onChangeText, placeholder, secureTextEntry, value }) => 
                 style={styles.input}
                 secureTextEntry={secureTextEntry}
                 value={value}
+                underlineColorAndroid={'transparent'}
             />
         </View>
     )
@@ -21,22 +22,22 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 10,
         width: '100%',
-        borderColor: '#fff',
+        borderColor: '#D8D6D7',
         borderBottomWidth: 2
     },
     label: {
         padding: 5,
         paddingBottom: 0,
-        color: '#fff',
-        fontSize: 17,
+        color: '#6E727E',
+        fontSize: 14,
         width: '100%'
     },
     input: {
         paddingRight: 5,
         paddingLeft: 5,
         paddingBottom: 2,
-        color: '#fff',
-        fontSize: 18,
+        color: '#6E727E',
+        fontSize: 14,
         width: '100%'
     }
 });

@@ -4,18 +4,15 @@ import * as firebase from 'firebase';
 
 import Login from './Login';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBqQ-AacCfhOHlhnqCeruyf3rvFYpACo3A",
-  authDomain: "bike-to-work-app.firebaseapp.com",
-  databaseURL: "https://bike-to-work-app.firebaseio.com",
-  storageBucket: "bike-to-work-app.appspot.com"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-
-
 export default class App extends React.Component {
+  componentWillMount() {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyBqQ-AacCfhOHlhnqCeruyf3rvFYpACo3A',
+      authDomain: 'bike-to-work-app.firebaseapp.com',
+      databaseURL: 'https://bike-to-work-app.firebaseio.com',
+      storageBucket: 'bike-to-work-app.appspot.com'
+    });
+  }
 
   render() {
     return (

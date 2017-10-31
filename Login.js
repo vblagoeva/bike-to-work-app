@@ -2,7 +2,42 @@ import React from 'react';
 import { StyleSheet, Text, View, Alert, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase';
 
+import { Input } from './components/Input';
+import { Button } from './components/Button';
+
 export default class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+            error: '',
+            loading: false
+        }
+    }
+
+    logIn() {
+        this.setState({ error: '', loading: true });
+
+        const { email, password } = this.state;
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(() => { this.setState({ error: '', loading: false }); })
+            .catch(() => {
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                    .then(() => { this.setState({ error: '', loading: false }); })
+                    .catch(() => {
+                        this.setState({ error: 'Authentication failed', loading: false });
+                    });
+            });
+
+    }
+
+    renderButtonOrSpinner() {
+        if (this.state.loading) {
+            return <Text>Loading</Text>
+        }
+        return <Button onPress={this.logIn.bind(this)}>LOG IN</Button>
+    }
 
     async fbAuth() {
         try {
@@ -46,12 +81,20 @@ export default class Login extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <TouchableOpacity onPress={this.fbAuth}>
-                    <Text>Login with FB</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={this.googleAuth}>
-                    <Text>Login with Google</Text>
-                </TouchableOpacity>
+                <Input
+                    placeholder='Email'
+                    onChangeText={email => this.setState({ email })}
+                    value={this.state.email}
+                />
+                <Input
+                    placeholder='Password'
+                    secureTextEntry
+                    onChangeText={password => this.setState({ password })}
+                    value={this.state.password}
+                />
+                {this.renderButtonOrSpinner()}
+                <Button onPress={this.fbAuth}>Login with FB</Button>
+                <Button onPress={this.googleAuth}>Login with Google</Button>
             </View>
         )
     }
@@ -61,6 +104,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: 30
     },
 });
