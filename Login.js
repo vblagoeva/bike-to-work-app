@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, ActivityIndicator, Text, View, Alert, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase';
 
 import { Input } from './components/Input';
@@ -21,11 +21,15 @@ export default class Login extends React.Component {
 
         const { email, password } = this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => { this.setState({ error: '', loading: false }); })
-            .catch(() => {
+            .then((response) => {
+                this.setState({ error: '', loading: false });
+            })
+            .catch((error) => {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(() => { this.setState({ error: '', loading: false }); })
-                    .catch(() => {
+                    .then((temp) => {
+                        this.setState({ error: '', loading: false });
+                    })
+                    .catch((error) => {
                         this.setState({ error: 'Authentication failed', loading: false });
                     });
             });
@@ -34,7 +38,7 @@ export default class Login extends React.Component {
 
     renderButtonOrSpinner() {
         if (this.state.loading) {
-            return <Text>Loading</Text>
+            return <ActivityIndicator size='small' />
         }
         return <Button onPress={this.logIn.bind(this)}>LOG IN</Button>
     }
@@ -44,14 +48,16 @@ export default class Login extends React.Component {
             const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1586495258073984', {
                 permissions: ['public_profile'],
             });
+
+            console.log(type);
             if (type === 'success') {
-                // Get the user's name using Facebook's Graph API
-                const response = await fetch(
-                    `https://graph.facebook.com/me?access_token=${token}`);
-                Alert.alert(
-                    'Logged in!',
-                    `Hi ${(await response.json()).name}!`,
-                );
+                const credential = firebase.auth.FacebookAuthProvider.credential(token);
+
+                // Sign in with credential from the Facebook user.
+                firebase.auth().signInWithCredential(credential).catch((error) => {
+                    // Handle Errors here.
+                    console.log(error);
+                });
             }
         } catch (error) {
             console.log(error);
@@ -66,8 +72,15 @@ export default class Login extends React.Component {
                 iosClientId: '295519412037-d94s047ju590fia8912ub9si5mscaf08.apps.googleusercontent.com',
                 scopes: ['profile', 'email'],
             });
-
+            console.log(result)
             if (result.type === 'success') {
+                const credential = firebase.auth.GoogleAuthProvider.credential(result.idToken);
+
+                // Sign in with credential from the Facebook user.
+                firebase.auth().signInWithCredential(credential).catch((error) => {
+                    // Handle Errors here.
+                    console.log(error)
+                });
                 return result.accessToken;
             } else {
                 return { cancelled: true };
