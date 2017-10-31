@@ -59,6 +59,8 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%'
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 });
