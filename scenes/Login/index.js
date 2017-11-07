@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, ActivityIndicator, Text, View, Alert, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Text, View, Alert, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase';
 
-import { Input } from './components/Input';
-import { Button } from './components/Button';
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+
+import styles from './styles';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -14,8 +16,14 @@ export default class Login extends React.Component {
             error: '',
             loading: false
         }
+        this.logIn = this.logIn.bind(this);
     }
 
+    /**
+     * Sign in with email
+     * 
+     * @returns void
+     */
     logIn() {
         this.setState({ error: '', loading: true });
 
@@ -40,9 +48,14 @@ export default class Login extends React.Component {
         if (this.state.loading) {
             return <ActivityIndicator size='small' />
         }
-        return <Button onPress={this.logIn.bind(this)}>LOG IN</Button>
+        return <Button onPress={this.logIn}>LOGIN</Button>
     }
 
+    /**
+     * Sign in with FB
+     * 
+     * @returns void
+     */
     async fbAuth() {
         try {
             const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1586495258073984', {
@@ -63,6 +76,11 @@ export default class Login extends React.Component {
             console.log(error);
         }
     }
+
+    /**
+     * Sign in with Google
+     * 
+     */
 
     async googleAuth() {
         try {
@@ -112,12 +130,3 @@ export default class Login extends React.Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 30
-    },
-});

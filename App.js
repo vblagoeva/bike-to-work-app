@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import * as firebase from 'firebase';
 
-import Login from './Login';
+import Login from './scenes/Login';
 
 export default class App extends React.Component {
   componentWillMount() {
