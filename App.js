@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
-import { Icon } from 'react-native-vector-icons/Ionicons';
 
 import Record from './src/tabs/Record';
 import Reports from './src/tabs/Reports';
 import Analytics from './src/tabs/Analytics';
 
 import Drawer from './src/components/Drawer';
+import Header from './src/components/Header';
 import HeaderButton from './src/components/HeaderButton';
 import { Button } from './src/components/Button';
 
@@ -24,7 +24,23 @@ const TabNavigation = TabNavigator({
   Analytics: {
     screen: Analytics,
   },
-});
+}, {
+    tabBarPosition: 'bottom',
+    animationEnabled: true,
+    initialRouteName: 'Record',
+    tabBarOptions: {
+      activeTintColor: '#1AA6B7',
+      inactiveTintColor: '#FFF',
+      showIcon: true,
+      showLabel: false,
+      style: {
+        backgroundColor: '#022D41',
+      },
+      indicatorStyle: {
+        backgroundColor: '#1AA6B7',
+      },
+    }
+  });
 
 // Wrap tab navigation into drawer navigation
 const TabsWithDrawerNavigation = DrawerNavigator({
@@ -33,7 +49,7 @@ const TabsWithDrawerNavigation = DrawerNavigator({
   }
 }, {
     // Register custom drawer component
-    contentComponent: props => <Drawer {...props} />
+    contentComponent: props => <Drawer {...props} />,
   });
 
 

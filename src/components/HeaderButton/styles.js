@@ -4,7 +4,10 @@ export default StyleSheet.create({
     container: {
         // position absolutely in the top left corner
         ...StyleSheet.absoluteFillObject,
-        top: 20,
-        left: 5,
+        top: 30,
+        left: 20,
+    },
+    menuIcon: {
+        color: '#022D41',
     }
 });

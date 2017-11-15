@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
@@ -18,12 +18,11 @@ export default class HeaderButton extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Icon.Button
-                    name={this.props.icon}
+                <MaterialIcons
+                    name='menu'
                     size={26}
-                    color="#4F8EF7"
-                    backgroundColor="#FFF"
                     onPress={this.props.onPress}
+                    style={styles.menuIcon}
                 />
             </View>
 
