@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
-import HeaderButton from '../../components/HeaderButton';
 import Header from '../../components/Header';
 import { Button } from '../../components/Button';
 

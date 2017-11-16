@@ -6,10 +6,10 @@ import Record from './src/tabs/Record';
 import Reports from './src/tabs/Reports';
 import Analytics from './src/tabs/Analytics';
 
+import Settings from './src/scenes/Settings';
+import Logout from './src/scenes/Logout';
+
 import Drawer from './src/components/Drawer';
-import Header from './src/components/Header';
-import HeaderButton from './src/components/HeaderButton';
-import { Button } from './src/components/Button';
 
 import * as firebase from 'firebase';
 
@@ -46,6 +46,12 @@ const TabNavigation = TabNavigator({
 const TabsWithDrawerNavigation = DrawerNavigator({
   Tabs: {
     screen: TabNavigation,
+  },
+  Settings: {
+    screen: Settings,
+  },
+  Logout: {
+    screen: Logout,
   }
 }, {
     // Register custom drawer component
