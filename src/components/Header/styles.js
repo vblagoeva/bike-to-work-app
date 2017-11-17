@@ -8,6 +8,15 @@ export default StyleSheet.create({
         backgroundColor: '#FFF',
         width: '100%',
         height: 70,
+        borderBottomWidth: 1,
+        borderBottomColor: '#D8D6D7',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowRadius: 4,
+        shadowOpacity: 1.0,
     },
     header: {
         fontSize: 20,

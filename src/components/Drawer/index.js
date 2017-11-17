@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, ImageBackground, Button } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 import Settings from '../../scenes/Settings';
 import Logout from '../../scenes/Logout';
 
-import { ButtonLink } from '../ButtonLink';
+import { NavLink } from '../NavLink';
 
 import styles from './styles';
 
@@ -28,12 +28,12 @@ export default class Drawer extends React.Component {
                         size={20}
                         style={styles.navIcon}
                     />
-                    <ButtonLink
+                    <NavLink
                         title='Settings'
                         onPress={() => navigate('Settings')}
                     >
                         Settings
-                </ButtonLink>
+                </NavLink>
                 </View>
                 <View style={styles.navItem}>
                     <MaterialIcons
@@ -41,12 +41,12 @@ export default class Drawer extends React.Component {
                         size={20}
                         style={styles.navIcon}
                     />
-                    <ButtonLink
+                    <NavLink
                         title='Logout'
                         onPress={() => navigate('Logout')}
                     >
                         Logout
-                </ButtonLink>
+                </NavLink>
                 </View>
             </View>
 

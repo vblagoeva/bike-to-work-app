@@ -5,7 +5,7 @@ export default StyleSheet.create({
         marginTop: 10,
         width: '100%',
         borderColor: '#D8D6D7',
-        borderBottomWidth: 2
+        borderBottomWidth: 1,
     },
     label: {
         padding: 5,

@@ -4,6 +4,8 @@ import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 import Header from '../../components/Header';
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
+import { ButtonLink } from '../../components/ButtonLink';
 
 import styles from './styles';
 
@@ -22,6 +24,30 @@ export default class Record extends React.Component {
                     navigate={navigate}
                     title={routeName}
                 />
+                <View style={styles.inputBox}>
+                    <Input
+                        placeholder={'Name'}
+                    />
+                    <Input
+                        placeholder={'Time'}
+                    />
+                    <Input
+                        placeholder={'Km'}
+                    />
+                    <Button>
+                        SAVE
+                    </Button>
+                    <View style={styles.btnLink}>
+                        <MaterialIcons
+                            name='close'
+                            size={14}
+                            style={styles.btnLinkIcon}
+                        />
+                        <ButtonLink>
+                            Clear the record
+                        </ButtonLink>
+                    </View>
+                </View>
             </View>
         )
     }

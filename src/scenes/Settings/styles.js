@@ -10,6 +10,16 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-start',
+        height: 70,
+        borderBottomWidth: 1,
+        borderBottomColor: '#D8D6D7',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowRadius: 4,
+        shadowOpacity: 1.0,
     },
     headerTitle: {
         fontSize: 20,
