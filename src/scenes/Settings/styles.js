@@ -7,7 +7,6 @@ export default StyleSheet.create({
         padding: 0,
     },
     header: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-start',

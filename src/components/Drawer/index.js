@@ -22,26 +22,32 @@ export default class Drawer extends React.Component {
                         <Text style={styles.headerName}>Jeremy Lowell</Text>
                     </View>
                 </ImageBackground>
-                <ButtonLink
-                    title='Settings'
-                    onPress={() => navigate('Settings')}
-                >
+                <View style={styles.navItem}>
                     <MaterialIcons
                         name='settings'
-                        size={16}
+                        size={20}
+                        style={styles.navIcon}
                     />
-                    Settings
+                    <ButtonLink
+                        title='Settings'
+                        onPress={() => navigate('Settings')}
+                    >
+                        Settings
                 </ButtonLink>
-                <ButtonLink
-                    title='Logout'
-                    onPress={() => navigate('Logout')}
-                >
+                </View>
+                <View style={styles.navItem}>
                     <MaterialIcons
                         name='exit-to-app'
-                        size={16}
+                        size={20}
+                        style={styles.navIcon}
                     />
-                    Log out
+                    <ButtonLink
+                        title='Logout'
+                        onPress={() => navigate('Logout')}
+                    >
+                        Logout
                 </ButtonLink>
+                </View>
             </View>
 
         );

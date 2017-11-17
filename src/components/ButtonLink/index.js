@@ -5,7 +5,7 @@ import styles from './styles';
 
 const ButtonLink = ({ onPress, children }) => {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.button}>
+        <TouchableOpacity onPress={onPress}>
             <Text style={styles.text}>{children}</Text>
         </TouchableOpacity>
     )

@@ -5,7 +5,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-start',
-        backgroundColor: '#FAFAFA',
+        backgroundColor: '#FFF',
         width: '100%',
         height: 70,
     },
