@@ -8,7 +8,8 @@ export default StyleSheet.create({
         borderBottomWidth: 1,
     },
     label: {
-        padding: 5,
+        paddingTop: 5,
+        paddingLeft: 0,
         paddingBottom: 0,
         color: '#6E727E',
         fontSize: 14,
@@ -16,7 +17,7 @@ export default StyleSheet.create({
     },
     input: {
         paddingRight: 5,
-        paddingLeft: 5,
+        paddingLeft: 22,
         paddingBottom: 2,
         color: '#6E727E',
         fontSize: 14,
