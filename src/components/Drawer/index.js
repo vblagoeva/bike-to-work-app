@@ -3,8 +3,7 @@ import { View, Text, ImageBackground } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 import Settings from '../../scenes/Settings';
-import Logout from '../../scenes/Logout';
-
+import { onSignOut } from '../../../auth';
 import { NavLink } from '../NavLink';
 
 import styles from './styles';
@@ -43,11 +42,13 @@ export default class Drawer extends React.Component {
                     />
                     <NavLink
                         title='Logout'
-                        onPress={() => navigate('Logout')}
+                        //onPress={() => navigate('SignedOut')}
+                        onPress={() => onSignOut().then(() => navigate('SignedOut'))}
                     >
                         Logout
-                </NavLink>
+                    </NavLink>
                 </View>
+
             </View>
 
         );
