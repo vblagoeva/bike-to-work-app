@@ -8,10 +8,9 @@ import Settings from './src/scenes/Settings';
 import Record from './src/tabs/Record';
 import Reports from './src/tabs/Reports';
 import Analytics from './src/tabs/Analytics';
+import { initialize } from './auth.js';
 
 import Drawer from './src/components/Drawer';
-
-import * as firebase from 'firebase';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,18 +23,12 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyBqQ-AacCfhOHlhnqCeruyf3rvFYpACo3A',
-      authDomain: 'bike-to-work-app.firebaseapp.com',
-      databaseURL: 'https://bike-to-work-app.firebaseio.com',
-      storageBucket: 'bike-to-work-app.appspot.com'
-    });
+    initialize();
 
     isSignedIn()
       .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
       .catch(err => {
         console.log(err);
-        // alert('An error occurred')
       });
   }
 

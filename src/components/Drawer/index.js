@@ -1,15 +1,18 @@
 import React from 'react';
 import { View, Text, ImageBackground } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import * as firebase from 'firebase';
 
 import Settings from '../../scenes/Settings';
 import { onSignOut } from '../../../auth';
 import { NavLink } from '../NavLink';
 
 import styles from './styles';
+import { SignedOut } from '../../navigation/RootNavigation/index';
 
 
 export default class Drawer extends React.Component {
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -42,7 +45,6 @@ export default class Drawer extends React.Component {
                     />
                     <NavLink
                         title='Logout'
-                        //onPress={() => navigate('SignedOut')}
                         onPress={() => onSignOut().then(() => navigate('SignedOut'))}
                     >
                         Logout
