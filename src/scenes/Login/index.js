@@ -4,6 +4,11 @@ import * as firebase from 'firebase';
 
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { ButtonFB } from '../../components/ButtonFB';
+import { ButtonGoogle } from '../../components/ButtonGoogle';
+
+
+import { onSignIn } from '../../../auth';
 
 import styles from './styles';
 
@@ -14,9 +19,19 @@ export default class Login extends React.Component {
             email: '',
             password: '',
             error: '',
-            loading: false
+            loading: false,
         }
         this.logIn = this.logIn.bind(this);
+    }
+
+    componentWillMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user != null) {
+                this.props.navigation.navigate('SignedIn');
+            } else {
+                console.log('you are not logged')
+            }
+        })
     }
 
     /**
@@ -57,12 +72,12 @@ export default class Login extends React.Component {
      * @returns void
      */
     async fbAuth() {
+
         try {
             const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1586495258073984', {
                 permissions: ['public_profile'],
             });
 
-            console.log(type);
             if (type === 'success') {
                 const credential = firebase.auth.FacebookAuthProvider.credential(token);
 
@@ -83,6 +98,7 @@ export default class Login extends React.Component {
      */
 
     async googleAuth() {
+
         try {
             const result = await Expo.Google.logInAsync({
                 behavior: 'web',
@@ -90,7 +106,7 @@ export default class Login extends React.Component {
                 iosClientId: '295519412037-d94s047ju590fia8912ub9si5mscaf08.apps.googleusercontent.com',
                 scopes: ['profile', 'email'],
             });
-            console.log(result)
+            // console.log(result)
             if (result.type === 'success') {
                 const credential = firebase.auth.GoogleAuthProvider.credential(result.idToken);
 
@@ -124,8 +140,22 @@ export default class Login extends React.Component {
                     value={this.state.password}
                 />
                 {this.renderButtonOrSpinner()}
-                <Button onPress={this.fbAuth}>Login with FB</Button>
-                <Button onPress={this.googleAuth}>Login with Google</Button>
+                <ButtonFB
+                    onPress={this.fbAuth}
+                >
+                    Login with FB
+                </ButtonFB>
+                <ButtonGoogle
+                    onPress={this.googleAuth}>
+                    Login with Google
+                </ButtonGoogle>
+                <Text
+                    style={{ color: '#ddd', marginTop: 10 }}
+                >or
+                    <Text
+                        style={{ color: '#F25D59' }}
+                    > Sign Up</Text>
+                </Text>
             </View>
         )
     }

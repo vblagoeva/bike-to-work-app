@@ -1,77 +1,46 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { DrawerNavigator, TabNavigator } from 'react-navigation';
+import { createRootNavigator, SignedOut, SignedIn } from './src/navigation/RootNavigation';
+import { isSignedIn } from './auth';
+
+import Settings from './src/scenes/Settings';
 
 import Record from './src/tabs/Record';
 import Reports from './src/tabs/Reports';
 import Analytics from './src/tabs/Analytics';
-
-import Settings from './src/scenes/Settings';
-import Logout from './src/scenes/Logout';
+import { initialize } from './auth.js';
 
 import Drawer from './src/components/Drawer';
 
-import * as firebase from 'firebase';
-
-// Tab navigation for Reports, Record and Analytics screens
-const TabNavigation = TabNavigator({
-  Reports: {
-    screen: Reports,
-  },
-  Record: {
-    screen: Record,
-  },
-  Analytics: {
-    screen: Analytics,
-  },
-}, {
-    tabBarPosition: 'bottom',
-    animationEnabled: true,
-    initialRouteName: 'Record',
-    tabBarOptions: {
-      activeTintColor: '#1AA6B7',
-      inactiveTintColor: '#FFF',
-      showIcon: true,
-      showLabel: false,
-      style: {
-        backgroundColor: '#022D41',
-      },
-      indicatorStyle: {
-        backgroundColor: '#1AA6B7',
-      },
-    }
-  });
-
-// Wrap tab navigation into drawer navigation
-const TabsWithDrawerNavigation = DrawerNavigator({
-  Tabs: {
-    screen: TabNavigation,
-  },
-  Settings: {
-    screen: Settings,
-  },
-  Logout: {
-    screen: Logout,
-  }
-}, {
-    // Register custom drawer component
-    contentComponent: props => <Drawer {...props} />,
-  });
-
-
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      signedIn: false,
+      checkedSignIn: false,
+    };
+  }
+
   componentWillMount() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyBqQ-AacCfhOHlhnqCeruyf3rvFYpACo3A',
-      authDomain: 'bike-to-work-app.firebaseapp.com',
-      databaseURL: 'https://bike-to-work-app.firebaseio.com',
-      storageBucket: 'bike-to-work-app.appspot.com'
-    });
+    initialize();
+
+    isSignedIn()
+      .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
-    return (
-      <TabsWithDrawerNavigation />
-    );
+    const { checkedSignIn, signedIn } = this.state;
+
+    if (!checkedSignIn) {
+      return null;
+    }
+
+    const Layout = createRootNavigator(signedIn);
+    return <Layout />;
+
   }
 }

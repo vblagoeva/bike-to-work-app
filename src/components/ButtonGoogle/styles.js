@@ -9,6 +9,8 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ddd',
         borderRadius: 0,
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
     text: {
         color: '#333',
