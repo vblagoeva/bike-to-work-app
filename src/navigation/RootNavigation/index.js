@@ -69,7 +69,10 @@ export const SignedIn = DrawerNavigator({
         screen: Settings,
     },
 }, {
-        // Register custom drawer component
+        // Register custom drawer component 
+        drawerOpenRoute: 'DrawerOpen',
+        drawerCloseRoute: 'DrawerClose',
+        drawerToggleRoute: 'DrawerToggle',
         contentComponent: props => <Drawer {...props} />,
     });
 
