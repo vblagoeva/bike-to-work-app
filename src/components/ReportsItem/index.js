@@ -3,10 +3,6 @@ import { View, Text } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 
-import Header from '../../components/Header';
-import ReportsItem from '../../components/ReportsItem';
-import { Button } from '../../components/Button';
-
 import styles from './styles';
 
 class ReportsDay extends React.Component {
@@ -62,39 +58,18 @@ export const ReportsTabs = TabNavigator({
         screen: ReportsMonth,
     },
 }, {
-        tabBarPosition: 'top',
-        animationEnabled: true,
-        tabBarOptions: {
-            activeTintColor: '#1AA6B7',
-            inactiveTintColor: '#FFF',
-            style: {
-                backgroundColor: '#022D41',
-            },
-            indicatorStyle: {
-                backgroundColor: '#1AA6B7',
-            },
-        }
+        tabBarPosition: 'top'
     });
 
+export default class ReportsItem extends React.Component {
 
-export default class Reports extends React.Component {
-
-    static navigationOptions = {
-        title: 'Reports',
-        tabBarLabel: 'Reports',
-        tabBarIcon: ({ tintColor }) => <MaterialIcons name='assignment' size={26} style={{ color: tintColor }} />
-    }
     render() {
-        let { navigate } = this.props.navigation;
-        let { routeName } = this.props.navigation.state;
         return (
             <View style={styles.container}>
-                <Header
-                    navigate={navigate}
-                    title={routeName}
-                />
                 <ReportsTabs />
             </View>
-        )
+
+        );
     }
 }
+

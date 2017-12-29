@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import DatePicker from 'react-native-datepicker';
+import * as firebase from 'firebase';
+import auth from '../../../auth';
 
 import Header from '../../components/Header';
 import { Button } from '../../components/Button';
@@ -11,18 +13,38 @@ import { ButtonLink } from '../../components/ButtonLink';
 import styles from './styles';
 
 export default class Record extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
-            date: '2017-11-17',
-            time: '00:00'
+            date: '',
+            time: '',
+            activity_name: '',
+            distance: ''
         }
+
+        this.saveRecord = this.saveRecord.bind(this);
     }
 
     static navigationOptions = {
         title: 'Record',
         tabBarLabel: 'Record',
         tabBarIcon: ({ tintColor }) => <MaterialIcons name='fiber-manual-record' size={26} style={{ color: tintColor }} />
+    }
+
+    saveRecord() {
+        const firebaseActivityRef = firebase.database().ref('activities');
+
+        firebaseActivityRef.push().set({
+            date: this.state.date,
+            time: this.state.time,
+            activity_name: this.state.activity_name,
+            distance: this.state.distance
+        });
+    }
+
+    clearRecord() {
+
     }
     render() {
         let { navigate } = this.props.navigation;
@@ -106,6 +128,7 @@ export default class Record extends React.Component {
                         <Input
                             label={'Name of your ride'}
                             placeholder={'Name'}
+                            onChangeText={activity_name => this.setState({ activity_name })}
                         />
                     </View>
                     <View style={styles.formItem}>
@@ -116,14 +139,17 @@ export default class Record extends React.Component {
                         />
                         <Input
                             label={'Kilometers passed'}
-                            placeholder={'Km'}
+                            placeholder={'Distance'}
                             keyboardType={'numeric'}
+                            onChangeText={distance => this.setState({ distance })}
                         />
-                        <ButtonLink>
+                        <ButtonLink
+                            onPress={this.clearRecord}>
                             Clear the record
                         </ButtonLink>
                     </View>
-                    <Button>
+                    <Button
+                        onPress={this.saveRecord}>
                         SAVE
                     </Button>
                 </View>
