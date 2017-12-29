@@ -63,7 +63,9 @@ export const ReportsTabs = TabNavigator({
     },
 }, {
         tabBarPosition: 'top',
-        animationEnabled: true,
+        swipeEnabled: false,
+        lazyLoad: true,
+        animationEnabled: false,
         tabBarOptions: {
             activeTintColor: '#1AA6B7',
             inactiveTintColor: '#FFF',

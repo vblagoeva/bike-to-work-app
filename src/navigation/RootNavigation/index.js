@@ -6,7 +6,7 @@ import SignIn from '../../scenes/SignIn';
 import Settings from '../../scenes/Settings';
 
 import Record from '../../tabs/Record';
-import Reports, { ReportsTabs } from '../../tabs/Reports';
+import Reports from '../../tabs/Reports';
 import Analytics from '../../tabs/Analytics';
 
 import Drawer from '../../components/Drawer';
@@ -34,7 +34,7 @@ export const SignedOut = StackNavigator({
 // Tab navigation for Reports, Record and Analytics screens
 const TabNavigation = TabNavigator({
     Reports: {
-        screen: ReportsTabs,
+        screen: Reports,
     },
     Record: {
         screen: Record,
