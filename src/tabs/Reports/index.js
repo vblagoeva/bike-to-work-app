@@ -16,9 +16,28 @@ class ReportsDay extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Day view</Text>
+                <View style={styles.item}>
+                    <MaterialIcons
+                        name='access-time'
+                        size={26}
+                    />
+                    <View style={styles.itemTextBox}>
+                        <Text style={styles.itemText}>You have reported your time for</Text>
+                        <Text style={styles.itemTextRed}>today.</Text>
+                    </View>
+                    <Text style={styles.itemDate}>1:47:07</Text>
+                </View>
+                <View style={styles.item}>
+                    <MaterialIcons
+                        name='supervisor-account'
+                        size={26}
+                    />
+                    <View style={styles.itemTextBox}>
+                        <Text style={styles.itemText}>You joined Polar Cape team.</Text>
+                        <Text style={styles.itemLink}>view more</Text>
+                    </View>
+                </View>
             </View>
-
         );
     }
 }
@@ -30,7 +49,17 @@ class ReportsWeek extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Week view</Text>
+                <View style={styles.item}>
+                    <MaterialIcons
+                        name='access-time'
+                        size={26}
+                    />
+                    <View style={styles.itemTextBox}>
+                        <Text style={styles.itemText}>You have reported your time for</Text>
+                        <Text style={styles.itemTextRed}>22.12.2017.</Text>
+                    </View>
+                    <Text style={styles.itemDate}>54:32</Text>
+                </View>
             </View>
 
         );
@@ -44,7 +73,17 @@ class ReportsMonth extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Month view</Text>
+                <View style={styles.item}>
+                    <MaterialIcons
+                        name='access-time'
+                        size={26}
+                    />
+                    <View style={styles.itemTextBox}>
+                        <Text style={styles.itemText}>You have reported your time for</Text>
+                        <Text style={styles.itemTextRed}>December.</Text>
+                    </View>
+                    <Text style={styles.itemDate}>24:45</Text>
+                </View>
             </View>
 
         );
@@ -66,14 +105,15 @@ export const ReportsTabs = TabNavigator({
         swipeEnabled: false,
         lazyLoad: true,
         animationEnabled: false,
+        initialRouteName: 'Day',
         tabBarOptions: {
-            activeTintColor: '#1AA6B7',
-            inactiveTintColor: '#FFF',
+            activeTintColor: '#022D41',
+            inactiveTintColor: '#022D41',
             style: {
-                backgroundColor: '#022D41',
+                backgroundColor: '#FFF',
             },
             indicatorStyle: {
-                backgroundColor: '#1AA6B7',
+                backgroundColor: '#022D41',
             },
         }
     });
@@ -96,6 +136,14 @@ export default class Reports extends React.Component {
                     title={routeName}
                 />
                 <ReportsTabs />
+                <View style={styles.customReport}>
+                    <MaterialIcons
+                        name='add-circle-outline'
+                        size={26}
+                        style={styles.customReportIcon}
+                    />
+                    <Text style={styles.customReportLink}> Custom report</Text>
+                </View>
             </View>
         )
     }

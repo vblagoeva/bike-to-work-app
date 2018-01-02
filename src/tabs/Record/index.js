@@ -60,7 +60,7 @@ export default class Record extends React.Component {
                     <View style={styles.formItem}>
                         <MaterialIcons
                             name='event'
-                            size={16}
+                            size={20}
                             style={styles.formIcon}
                         />
                         <DatePicker
@@ -94,7 +94,7 @@ export default class Record extends React.Component {
                     <View style={styles.formItem}>
                         <MaterialIcons
                             name='access-time'
-                            size={16}
+                            size={20}
                             style={styles.formIcon}
                         />
                         <DatePicker
@@ -122,7 +122,7 @@ export default class Record extends React.Component {
                     <View style={styles.formItem}>
                         <MaterialIcons
                             name='account-circle'
-                            size={16}
+                            size={20}
                             style={styles.formIconInput}
                         />
                         <Input
@@ -134,7 +134,7 @@ export default class Record extends React.Component {
                     <View style={styles.formItem}>
                         <MaterialIcons
                             name='directions-bike'
-                            size={16}
+                            size={20}
                             style={styles.formIconInput}
                         />
                         <Input
@@ -143,11 +143,11 @@ export default class Record extends React.Component {
                             keyboardType={'numeric'}
                             onChangeText={distance => this.setState({ distance })}
                         />
-                        <ButtonLink
-                            onPress={this.clearRecord}>
-                            Clear the record
-                        </ButtonLink>
                     </View>
+                    <ButtonLink
+                        onPress={this.clearRecord}>
+                        Clear the record
+                    </ButtonLink>
                     <Button
                         onPress={this.saveRecord}>
                         SAVE

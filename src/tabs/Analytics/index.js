@@ -22,6 +22,21 @@ export default class Analytics extends React.Component {
                     navigate={navigate}
                     title={routeName}
                 />
+                <View style={styles.item}>
+                    <MaterialIcons
+                        name='supervisor-account'
+                        size={26}
+                    />
+                    <View style={styles.itemTextBox}>
+                        <Text style={styles.itemText}>Polar Cape Team.</Text>
+                        <Text style={styles.itemLink}>22 members</Text>
+                    </View>
+                    <MaterialIcons
+                        name='keyboard-arrow-right'
+                        size={26}
+                        style={styles.itemArrow}
+                    />
+                </View>
             </View>
         )
     }
