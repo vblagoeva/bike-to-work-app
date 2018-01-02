@@ -3,6 +3,46 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: '#FFF'
     },
+    item: {
+        padding: 20,
+        flexDirection: 'row',
+        width: '100%',
+        borderBottomWidth: 1,
+        borderBottomColor: '#D8D6D7'
+    },
+    itemTextBox: {
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    itemText: {
+        color: '#6E727E'
+    },
+    itemTextRed: {
+        color: '#F25D59',
+        fontWeight: 'bold',
+    },
+    itemDate: {
+        color: '#022D41',
+        fontWeight: 'bold',
+    },
+    itemLink: {
+        color: '#1AA6B7',
+        fontWeight: 'bold',
+    },
+    customReport: {
+        flexDirection: 'row',
+    },
+    customReportIcon: {
+        color: '#F25D59',
+        paddingLeft: 20,
+        paddingBottom: 20
+    },
+    customReportLink: {
+        color: '#F25D59',
+        fontWeight: 'bold',
+        fontSize: 16,
+        paddingTop: 3
+    }
 });
