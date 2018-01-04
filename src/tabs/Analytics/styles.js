@@ -25,5 +25,22 @@ export default StyleSheet.create({
     },
     itemArrow: {
         justifyContent: 'flex-end',
+    },
+    teamWrapper: {
+        flexDirection: 'row'
+    },
+    teamOptions: {
+        flexDirection: 'row',
+    },
+    teamOptionsIcon: {
+        color: '#F25D59',
+        paddingLeft: 20,
+        paddingBottom: 20
+    },
+    teamOptionsLink: {
+        color: '#F25D59',
+        fontWeight: 'bold',
+        fontSize: 16,
+        paddingTop: 3
     }
 });
