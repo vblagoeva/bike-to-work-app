@@ -1,54 +1,46 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import * as firebase from 'firebase';
+import { StyleSheet, View, Text } from 'react-native';
+import { createRootNavigator, SignedOut, SignedIn } from './src/navigation/RootNavigation';
+import { isSignedIn } from './auth';
 
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyBqQ-AacCfhOHlhnqCeruyf3rvFYpACo3A",
-  authDomain: "bike-to-work-app.firebaseapp.com",
-  databaseURL: "https://bike-to-work-app.firebaseio.com",
-  storageBucket: "bike-to-work-app.appspot.com"
-};
+import Settings from './src/scenes/Settings';
 
-firebase.initializeApp(firebaseConfig);
+import Record from './src/tabs/Record';
+import Reports from './src/tabs/Reports';
+import Analytics from './src/tabs/Analytics';
+import { initialize } from './auth.js';
+
+import Drawer from './src/components/Drawer';
 
 export default class App extends React.Component {
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      signedIn: false,
+      checkedSignIn: false,
+    };
   }
 
-  async logIn() {
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1586495258073984', {
-      permissions: ['public_profile'],
-    });
-    if (type === 'success') {
-      // Get the user's name using Facebook's Graph API
-      const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${token}`);
-      Alert.alert(
-        'Logged in!',
-        `Hi ${(await response.json()).name}!`,
-      );
-    }
+  componentWillMount() {
+    initialize();
+
+    isSignedIn()
+      .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={this.logIn}>
-          <Text>Login with FB</Text>
-        </TouchableOpacity>
-      </View>
-    );
+    const { checkedSignIn, signedIn } = this.state;
+
+    if (!checkedSignIn) {
+      return null;
+    }
+
+    const Layout = createRootNavigator(signedIn);
+    return <Layout />;
+
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
