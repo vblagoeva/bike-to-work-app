@@ -19,9 +19,14 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "adm-zip": "^0.4.11",
     "auth0-js": "^9.3.0",
     "expo": "^21.0.3",
     "firebase": "^4.8.1",
+    "fresh": "^0.5.2",
+    "hoek": "^4.2.1",
+    "https-proxy-agent": "^2.2.0",
+    "lodash": "^4.17.5",
     "moment": "^2.19.3",
     "prop-types": "^15.6.0",
     "react": "16.0.0-alpha.12",
@@ -29,6 +34,8 @@
     "react-native-datepicker": "^1.6.0",
     "react-native-fbsdk": "^0.6.3",
     "react-native-vector-icons": "^4.4.3",
-    "react-navigation": "^1.0.0-beta.22"
+    "react-navigation": "^1.0.0-beta.22",
+    "sshpk": "^1.13.2",
+    "superagent": "^3.7.0"
   }
 }
